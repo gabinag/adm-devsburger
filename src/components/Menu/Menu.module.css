@@ -1,0 +1,13 @@
+.menu{
+    background-color: lightgray;
+    height: 100vh;
+    position: fixed;
+    padding: 1rem;
+}
+
+.navMenu {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    justify-content: space-between;
+}
