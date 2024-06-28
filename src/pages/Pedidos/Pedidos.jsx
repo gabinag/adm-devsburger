@@ -32,31 +32,32 @@ export const Pedidos = () =>  {
   }
 
   return (
-    <div className={styles.pedidos}>
+    <>
       <Menu></Menu>
-      <h1>Pedidos</h1>
-      {orders.length === 0 ? (
-        <p>Nenhum pedido encontrado</p>
-      ) : (
-        orders.map((order) => (
-          <div key={order.id} className="order">
-            <h3>Pedido #{order.id}</h3>
-            <p>Nome: {order.name}</p>
-            <p>Telefone: {order.phone}</p>
-            <p>Endereço: {order.address}</p>
-            <p>Forma de Pagamento: {order.paymentMethod}</p>
-            <h4>Itens:</h4>
-            <ul>
-              {order.orderItems.map((item, index) => (
-                <li key={index}>
-                  {item.product.name} - Quantidade: {item.quantity}
-                </li>
-              ))}
-            </ul>
-            <button onClick={() => handleDeleteOrder(order.id)}>Cancelar pedido</button>
-          </div>
+      <main className={styles.pedidos}>
+        <h1>Pedidos</h1>
+        {orders.length === 0 ? (
+          <p>Nenhum pedido encontrado</p>
+        ) : (
+          orders.map((order) => (
+            <div key={order.id} className="order">
+              <p>Nome: {order.name}</p>
+              <p>Telefone: {order.phone}</p>
+              <p>Endereço: {order.address}</p>
+              <p>Forma de Pagamento: {order.paymentMethod}</p>
+              <h4>Itens:</h4>
+              <ul>
+                {order.orderItems.map((item, index) => (
+                  <li key={index}>
+                    {item.product.name} - Quantidade: {item.quantity}
+                  </li>
+                ))}
+              </ul>
+              <button onClick={() => handleDeleteOrder(order.id)}>Cancelar pedido</button>
+            </div>
         ))
       )}
-    </div>
+      </main>
+    </>
   );
 }
