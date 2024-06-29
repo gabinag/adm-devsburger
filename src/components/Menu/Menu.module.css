@@ -11,3 +11,16 @@
     height: 90vh;
     justify-content: space-between;
 }
+
+.navMenu ul{
+    margin-top: 10rem;
+    font-size: 1.4rem;
+}
+
+.navMenu li {
+    margin-bottom: 1.2rem;
+}
+
+.navMenu a {
+    color: #000;
+}

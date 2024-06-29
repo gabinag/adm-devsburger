@@ -81,9 +81,8 @@ export const Produtos = () =>  {
             ref={nameRef}
           />
           <label>Descrição:</label>
-          <input
-            type="text"
-            placeholder="Digite o a descrição do produto"
+          <textarea
+            placeholder="Digite a descrição do produto"
             ref={descriptionRef}
           />
           <label>Preço:</label>
@@ -100,6 +99,9 @@ export const Produtos = () =>  {
           />
           <button type="submit">{editingProduct ? 'Atualizar' : 'Cadastrar'}</button>
         </form>
+        {products.length === 0 ? (
+          <p className={styles.loading}>Carregando...</p>
+        ) : (
         <section>
           {products.map((product) => (
             <div className={styles.card} key={product.id}>
@@ -107,11 +109,14 @@ export const Produtos = () =>  {
               <p>{product.name}</p>
               <p>{product.description}</p>
               <p>Preço: R${product.price}</p>
-              <button onClick={() => handleEdit(product)}>Editar</button>
-              <button onClick={() => handleDelete(product.id)}>Excluir</button>
+              <div className={styles.wrapBtn}>
+                <button onClick={() => handleEdit(product)}>Editar</button>
+                <button onClick={() => handleDelete(product.id)}>Excluir</button>
+              </div>
             </div>
           ))}
         </section>
+        )}
       </main>
     </div>
   );

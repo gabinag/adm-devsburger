@@ -14,15 +14,23 @@ form {
     margin: 1.5rem 0;
 }
 
-form input {
+form input, textarea {
     margin-bottom: .8rem;
-    padding: .2rem;
+    margin-top: .5rem;
+    padding: .3rem;
+    border: 1px solid gray;
+    border-radius: .5rem;
 }
 
 form button {
     width: 10rem;
     align-self: center;
     padding: .5rem;
+}
+
+.loading {
+    text-align: center;
+    font-size: 1.6rem;
 }
 
 section {
@@ -33,7 +41,7 @@ section {
 
 .card {
     width: min(20rem, 100%);
-    border: 1px solid #000;
+    border: 1px solid gray;
     border-radius: 1rem;
     padding: 1rem;
 }
@@ -43,4 +51,19 @@ section {
     max-height: 12rem;
     object-position: center;
     object-fit: cover;
+    border-radius: .5rem;
+}
+
+.card p {
+    margin-bottom: .4rem;
+}
+
+.card p:first-of-type {
+    font-weight: bold;
+}
+
+.wrapBtn {
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
 }

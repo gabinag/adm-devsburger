@@ -37,23 +37,27 @@ export const Pedidos = () =>  {
       <main className={styles.pedidos}>
         <h1>Pedidos</h1>
         {orders.length === 0 ? (
-          <p>Nenhum pedido encontrado</p>
+          <p>Carregando...</p>
         ) : (
           orders.map((order) => (
-            <div key={order.id} className="order">
-              <p>Nome: {order.name}</p>
-              <p>Telefone: {order.phone}</p>
-              <p>Endereço: {order.address}</p>
-              <p>Forma de Pagamento: {order.paymentMethod}</p>
-              <h4>Itens:</h4>
+            <div key={order.id} className={styles.wrapPedidos}>
+              <div>
+                <p>Nome: {order.name}</p>
+                <p>Telefone: {order.phone}</p>
+                <p>Endereço: {order.address}</p>
+                <p>Pagamento: {order.paymentMethod}</p>
+              </div>
               <ul>
                 {order.orderItems.map((item, index) => (
                   <li key={index}>
-                    {item.product.name} - Quantidade: {item.quantity}
+                    {item.quantity}x {item.product.name} 
                   </li>
                 ))}
               </ul>
-              <button onClick={() => handleDeleteOrder(order.id)}>Cancelar pedido</button>
+              <div className={styles.wrapBtn}>
+                <button onClick={() => handleDeleteOrder(order.id)}>Cancelar</button>
+                <button>Feito</button>
+              </div>
             </div>
         ))
       )}
