@@ -1,0 +1,19 @@
+.login {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 100vh;
+}
+
+.container, .wrapLogin {
+   margin: auto;
+}
+
+.wrapLogin {
+    background-color: lightgray;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
