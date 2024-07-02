@@ -46,7 +46,7 @@ export const Pedidos = () =>  {
               <div className={styles.wrapDados}>
                 <p>Nome: {order.name}</p>
                 <p>Telefone: {order.phone}</p>
-                <p>Endereço: {order.address}</p>
+                <p>Entrega: {order.address}</p>
                 <p>Pagamento: {order.paymentMethod}</p>
               </div>
               <ul>
