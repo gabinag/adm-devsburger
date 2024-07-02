@@ -17,6 +17,8 @@ export const Pedidos = () =>  {
     };
 
     fetchOrders();
+    const intervalId = setInterval(fetchOrders, 1000);
+    return () => clearInterval(intervalId);
   }, []);
 
   async function handleDeleteOrder(id) {
