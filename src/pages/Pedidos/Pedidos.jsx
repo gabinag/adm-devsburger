@@ -43,7 +43,7 @@ export const Pedidos = () =>  {
         ) : (
           orders.map((order) => (
             <div key={order.id} className={styles.wrapPedidos}>
-              <div>
+              <div className={styles.wrapDados}>
                 <p>Nome: {order.name}</p>
                 <p>Telefone: {order.phone}</p>
                 <p>Endereço: {order.address}</p>

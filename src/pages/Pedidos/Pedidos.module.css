@@ -19,6 +19,10 @@
     align-items: center;
 }
 
+.wrapDados {
+    width: 30rem;
+}
+
 .wrapBtn {
     display: flex;
     gap: 1rem;
