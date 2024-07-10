@@ -11,6 +11,14 @@ export const Produtos = () =>  {
   const descriptionRef = useRef(null);
   const priceRef = useRef(null);
   const imageRef = useRef(null);
+  const categoryRef = useRef(null);
+
+  const validCategories = [
+    { value: "HAMBURGUERES", label: "Hambúrgueres" },
+    { value: "COMBOS", label: "Combos" },
+    { value: "ACOMPANHAMENTOS", label: "Acompanhamentos" },
+    { value: "BEBIDAS", label: "Bebidas" }
+  ];
 
   useEffect(() => {
     loadProducts();
@@ -24,13 +32,14 @@ export const Produtos = () =>  {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (!nameRef.current?.value || !descriptionRef.current?.value || !priceRef.current?.value || !imageRef.current?.value) return;
+    if (!nameRef.current?.value || !descriptionRef.current?.value || !priceRef.current?.value || !imageRef.current?.value || !categoryRef.current?.value) return;
 
     const productData = {
       name: nameRef.current?.value,
       description: descriptionRef.current?.value,
       price: parseFloat(priceRef.current?.value), 
-      image: imageRef.current?.value
+      image: imageRef.current?.value,
+      category: categoryRef.current?.value
     };
 
     if (editingProduct) {
@@ -46,6 +55,7 @@ export const Produtos = () =>  {
     descriptionRef.current.value = ""
     priceRef.current.value = ""
     imageRef.current.value = ""
+    categoryRef.current.value = "";
   }
 
   async function handleDelete(id) {
@@ -66,6 +76,7 @@ export const Produtos = () =>  {
     descriptionRef.current.value = product.description;
     priceRef.current.value = product.price;
     imageRef.current.value = product.image;
+    categoryRef.current.value = product.category;
   }
 
   return (
@@ -97,6 +108,13 @@ export const Produtos = () =>  {
             placeholder="Digite a url da imagem"
             ref={imageRef}
           />
+          <label>Categoria:</label>
+          <select ref={categoryRef} defaultValue="" required>
+          <option value="" disabled hidden>Selecione uma categoria</option>
+            {validCategories.map(category => (
+              <option key={category.value} value={category.value}>{category.label}</option>
+            ))}
+          </select>
           <button type="submit">{editingProduct ? 'Atualizar' : 'Cadastrar'}</button>
         </form>
         {products.length === 0 ? (
