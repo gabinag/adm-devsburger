@@ -7,8 +7,8 @@ export const Menu = () =>  {
         <p>Adm Devs Burger</p>
         <nav className={styles.navMenu}>
             <ul>
-                <li><NavLink to='/pedidos'>Pedidos</NavLink></li>
-                <li><NavLink to='/'>Produtos</NavLink></li>
+                <li><NavLink to='/'>Pedidos</NavLink></li>
+                <li><NavLink to='/produtos'>Produtos</NavLink></li>
             </ul>
             <button>Sair</button>
         </nav>

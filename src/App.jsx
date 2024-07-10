@@ -9,8 +9,8 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path='/pedidos' element={<Pedidos/>} />
-          <Route path='' element={<Produtos/>} />
+          <Route path='' element={<Pedidos/>}></Route>
+          <Route path='/produtos' element={<Produtos/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
         </Routes>
       </BrowserRouter>
