@@ -1,16 +1,23 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
-import {Menu} from '../../components/Menu/Menu';
+import { Menu } from '../../components/Menu/Menu';
 import styles from './Pedidos.module.css';
 
-export const Pedidos = () =>  {
+export const Pedidos = () => {
   const [orders, setOrders] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await api.get("/orders");
-        setOrders(response.data);
+        const response = await api.get('/orders');
+        const fetchedOrders = response.data;
+
+        const pendingOrders = fetchedOrders.filter(order => order.status === 'pending');
+
+        const sortedOrders = pendingOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setOrders(sortedOrders);
       } catch (error) {
         console.error('Erro ao buscar pedidos:', error);
       }
@@ -26,20 +33,38 @@ export const Pedidos = () =>  {
       await api.delete("/order", {
         params: { id }
       });
+
       const allOrders = orders.filter((order) => order.id !== id);
-      setOrders(allOrders);
+      const sortedOrders = allOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setOrders(sortedOrders);
     } catch(error) {
       console.log(error);
     }
   }
 
+  async function markOrderAsReady(orderId) {
+    try {
+      await api.post("/order/status", { orderId, status: "ready" });
+
+      const updatedOrders = orders.map((order) =>
+        order.id === orderId ? { ...order, status: "ready" } : order
+      );
+      const sortedOrders = updatedOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setOrders(sortedOrders);
+    } catch (error) {
+      console.error('Erro ao marcar pedido como pronto:', error);
+    }
+  }
+
   return (
     <>
-      <Menu></Menu>
+      <Menu />
       <main className={styles.pedidos}>
         <h1>Pedidos</h1>
+        <button onClick={() => navigate('/')}>A fazer</button>
+        <button onClick={() => navigate('/feitos')}>Feitos</button>
         {orders.length === 0 ? (
-          <p>Carregando...</p>
+          <p>Buscando pedidos...</p>
         ) : (
           orders.map((order) => (
             <div key={order.id} className={styles.wrapPedidos}>
@@ -52,18 +77,20 @@ export const Pedidos = () =>  {
               <ul>
                 {order.orderItems.map((item, index) => (
                   <li key={index}>
-                    {item.quantity}x {item.product.name} 
+                    {item.quantity}x {item.product.name}
                   </li>
                 ))}
               </ul>
               <div className={styles.wrapBtn}>
                 <button onClick={() => handleDeleteOrder(order.id)}>Cancelar</button>
-                <button>Feito</button>
+                {order.status === 'pending' && (
+                  <button onClick={() => markOrderAsReady(order.id)}>Feito</button>
+                )}
               </div>
             </div>
-        ))
-      )}
+          ))
+        )}
       </main>
     </>
   );
-}
+};
