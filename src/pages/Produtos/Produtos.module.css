@@ -1,5 +1,6 @@
 .produtos {
     display: flex;
+    padding-bottom: 4rem;
 }
 
 .wrapProdutos {
@@ -37,6 +38,13 @@ section {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
+}
+
+.filter {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .card {
