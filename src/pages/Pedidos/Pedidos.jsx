@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 import { Menu } from '../../components/Menu/Menu';
 import styles from './Pedidos.module.css';
+import { NavPedidos } from '../../components/NavPedidos/NavPedidos';
 
 export const Pedidos = () => {
   const [orders, setOrders] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -61,8 +60,7 @@ export const Pedidos = () => {
       <Menu />
       <main className={styles.pedidos}>
         <h1>Pedidos</h1>
-        <button onClick={() => navigate('/')}>A fazer</button>
-        <button onClick={() => navigate('/feitos')}>Feitos</button>
+        <NavPedidos/>
         {orders.length === 0 ? (
           <p>Buscando pedidos...</p>
         ) : (

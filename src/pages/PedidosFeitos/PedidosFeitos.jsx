@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 import { Menu } from '../../components/Menu/Menu';
 import styles from './PedidosFeitos.module.css';
+import { NavPedidos } from '../../components/NavPedidos/NavPedidos';
 
 export const PedidosFeitos = () => {
   const [completedOrders, setCompletedOrders] = useState([]);
-  const navigate = useNavigate();
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const fetchCompletedOrders = async () => {
@@ -26,13 +26,26 @@ export const PedidosFeitos = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  async function handleDeleteOrder(id) {
+    try {
+      await api.delete("/order", {
+        params: { id }
+      });
+
+      const allOrders = orders.filter((order) => order.id !== id);
+      const sortedOrders = allOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setOrders(sortedOrders);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <Menu />
       <main className={styles.pedidosFeito}>
         <h1>Pedidos Concluídos</h1>
-        <button onClick={() => navigate('/')}>A fazer</button>
-        <button onClick={() => navigate('/feitos')}>Feitos</button>
+        <NavPedidos/>
         {completedOrders.length === 0 ? (
           <p>Buscando pedidos feitos...</p>
         ) : (
@@ -51,6 +64,7 @@ export const PedidosFeitos = () => {
                   </li>
                 ))}
               </ul>
+              <button onClick={() => handleDeleteOrder(order.id)}>Excluir</button>
             </div>
           ))
         )}
