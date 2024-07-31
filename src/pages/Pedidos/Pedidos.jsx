@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { Menu } from '../../components/Menu/Menu';
-import styles from './Pedidos.module.css';
-import { NavPedidos } from '../../components/NavPedidos/NavPedidos';
+import { CardPedido } from '../../components/CardPedido/CardPedido';
+import '../../App.css';
 
 export const Pedidos = () => {
   const [orders, setOrders] = useState([]);
@@ -41,54 +41,26 @@ export const Pedidos = () => {
     }
   }
 
-  async function markOrderAsReady(orderId) {
+  async function markOrderAsDoing(orderId) {
     try {
-      await api.post("/order/status", { orderId, status: "ready" });
+      await api.post("/order/status", { orderId, status: "doing" });
 
-      const updatedOrders = orders.map((order) =>
-        order.id === orderId ? { ...order, status: "ready" } : order
-      );
-      const sortedOrders = updatedOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      setOrders(sortedOrders);
+      const updatedOrders = orders.filter((order) => order.id !== orderId);
+      setOrders(updatedOrders);
     } catch (error) {
-      console.error('Erro ao marcar pedido como pronto:', error);
+      console.error('Erro ao marcar pedido como em andamento:', error);
     }
   }
 
   return (
     <>
       <Menu />
-      <main className={styles.pedidos}>
-        <h1>Pedidos</h1>
-        <NavPedidos/>
-        {orders.length === 0 ? (
-          <p>Buscando pedidos...</p>
-        ) : (
-          orders.map((order) => (
-            <div key={order.id} className={styles.wrapPedidos}>
-              <div className={styles.wrapDados}>
-                <p>Nome: {order.name}</p>
-                <p>Telefone: {order.phone}</p>
-                <p>Entrega: {order.address}</p>
-                <p>Pagamento: {order.paymentMethod}</p>
-              </div>
-              <ul>
-                {order.orderItems.map((item, index) => (
-                  <li key={index}>
-                    {item.quantity}x {item.product.name}
-                  </li>
-                ))}
-              </ul>
-              <div className={styles.wrapBtn}>
-                <button onClick={() => handleDeleteOrder(order.id)}>Cancelar</button>
-                {order.status === 'pending' && (
-                  <button onClick={() => markOrderAsReady(order.id)}>Feito</button>
-                )}
-              </div>
-            </div>
-          ))
-        )}
-      </main>
+      <CardPedido
+        orders={orders}
+        onDelete={handleDeleteOrder}
+        onStatusChange={markOrderAsDoing}
+        statusButtonLabel="Aprovar"
+      />
     </>
   );
 };

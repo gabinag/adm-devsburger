@@ -1,0 +1,29 @@
+.pedidos {
+  margin: auto;
+  padding: 2rem;
+  max-width: 70rem;
+}
+
+.pedidos h1 {
+  margin-bottom: 2rem;
+}
+
+.wrapPedidos {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid gray;
+  border-radius: 1rem;
+  align-items: center;
+}
+
+.wrapDados {
+  width: 30rem;
+}
+
+.wrapBtn {
+  display: flex;
+  gap: 1rem;
+}

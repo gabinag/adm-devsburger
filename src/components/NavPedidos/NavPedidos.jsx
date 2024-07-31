@@ -10,7 +10,13 @@ export const NavPedidos = () => {
         to="/" 
         className={`${styles.link} ${location.pathname === '/' ? styles.active : ''}`}
       >
-        A fazer
+        Aprovação pendente
+      </Link>
+      <Link 
+        to="/fazendo" 
+        className={`${styles.link} ${location.pathname === '/fazendo' ? styles.active : ''}`}
+      >
+        Fazendo
       </Link>
       <Link 
         to="/feitos" 
