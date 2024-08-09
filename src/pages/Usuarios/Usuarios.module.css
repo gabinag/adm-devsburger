@@ -1,0 +1,10 @@
+.usuarios {
+  display: flex;
+  padding-bottom: 4rem;
+}
+
+.wrapUsuarios {
+  margin: auto;
+  width: min(71rem, 100%);
+  padding: 2rem 0;
+}
