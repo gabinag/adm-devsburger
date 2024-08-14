@@ -5,6 +5,7 @@ import { CardPedido } from '../../components/CardPedido/CardPedido';
 
 export const PedidosFazendo = () => {
   const [doingOrders, setDoingOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const fetchDoingOrders = async () => {
@@ -23,16 +24,14 @@ export const PedidosFazendo = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  async function handleDeleteOrder(id) {
+  async function handleCancelOrder(id) {
     try {
-      await api.delete("/order", {
-        params: { id }
-      });
-
-      const updatedOrders = doingOrders.filter((order) => order.id !== id);
-      setDoingOrders(updatedOrders);
-    } catch(error) {
-      console.error('Erro ao excluir pedido:', error);
+      await api.post("/order/status", { orderId: id, status: "canceled" });
+  
+      const remainingOrders = orders.filter((order) => order.id !== id);
+      setOrders(remainingOrders);
+    } catch (error) {
+      console.error('Erro ao cancelar pedido:', error);
     }
   }
 
@@ -52,9 +51,10 @@ export const PedidosFazendo = () => {
       <Menu />
       <CardPedido
         orders={doingOrders}
-        onDelete={handleDeleteOrder}
+        onCancel={handleCancelOrder}
         onStatusChange={markOrderAsReady}
         statusButtonLabel="Feito"
+        cancelButtonLabel="Cancelar"
       />
     </>
   );

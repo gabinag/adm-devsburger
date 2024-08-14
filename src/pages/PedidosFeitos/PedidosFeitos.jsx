@@ -5,6 +5,7 @@ import { CardPedido } from '../../components/CardPedido/CardPedido';
 
 export const PedidosFeitos = () => {
   const [completedOrders, setCompletedOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const fetchCompletedOrders = async () => {
@@ -36,12 +37,26 @@ export const PedidosFeitos = () => {
     }
   }
 
+  async function handleCancelOrder(id) {
+    try {
+      await api.post("/order/status", { orderId: id, status: "canceled" });
+  
+      const remainingOrders = orders.filter((order) => order.id !== id);
+      setOrders(remainingOrders);
+    } catch (error) {
+      console.error('Erro ao cancelar pedido:', error);
+    }
+  }
+
   return (
     <>
       <Menu />
       <CardPedido
         orders={completedOrders}
+        onCancel={handleCancelOrder}
         onDelete={handleDeleteOrder}
+        cancelButtonLabel="Cancelar"
+        deleteButtonLabel="Deletar"
       />
     </>
   );

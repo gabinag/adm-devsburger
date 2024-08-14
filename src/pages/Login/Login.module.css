@@ -17,3 +17,16 @@
     justify-content: center;
     align-items: center;
 }
+
+.formLogin {
+    width: 28rem;
+}
+
+.formLogin button {
+    margin: 2rem 0;
+}
+
+.error {
+    color: red;
+    text-align: center;
+  }

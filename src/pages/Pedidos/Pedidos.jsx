@@ -27,17 +27,14 @@ export const Pedidos = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  async function handleDeleteOrder(id) {
+  async function handleCancelOrder(id) {
     try {
-      await api.delete("/order", {
-        params: { id }
-      });
-
-      const allOrders = orders.filter((order) => order.id !== id);
-      const sortedOrders = allOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      setOrders(sortedOrders);
-    } catch(error) {
-      console.log(error);
+      await api.post("/order/status", { orderId: id, status: "canceled" });
+  
+      const remainingOrders = orders.filter((order) => order.id !== id);
+      setOrders(remainingOrders);
+    } catch (error) {
+      console.error('Erro ao cancelar pedido:', error);
     }
   }
 
@@ -57,8 +54,9 @@ export const Pedidos = () => {
       <Menu />
       <CardPedido
         orders={orders}
-        onDelete={handleDeleteOrder}
+        onCancel={handleCancelOrder}
         onStatusChange={markOrderAsDoing}
+        cancelButtonLabel="Cancelar"
         statusButtonLabel="Aprovar"
       />
     </>

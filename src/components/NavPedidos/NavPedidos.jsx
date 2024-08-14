@@ -7,8 +7,8 @@ export const NavPedidos = () => {
   return (
     <div className={styles.navpedidos}>
       <Link 
-        to="/" 
-        className={`${styles.link} ${location.pathname === '/' ? styles.active : ''}`}
+        to="/pedidos" 
+        className={`${styles.link} ${location.pathname === '/pedidos' ? styles.active : ''}`}
       >
         Aprovação pendente
       </Link>
@@ -23,6 +23,12 @@ export const NavPedidos = () => {
         className={`${styles.link} ${location.pathname === '/feitos' ? styles.active : ''}`}
       >
         Feitos
+      </Link>
+      <Link 
+        to="/cancelados" 
+        className={`${styles.link} ${location.pathname === '/cancelados' ? styles.active : ''}`}
+      >
+        Cancelados
       </Link>
     </div>
   );

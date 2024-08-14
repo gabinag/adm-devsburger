@@ -1,7 +1,7 @@
 import { NavPedidos } from '../NavPedidos/NavPedidos';
 import styles from './CardPedido.module.css';
 
-export const CardPedido = ({ orders, onDelete, onStatusChange, statusButtonLabel }) => {
+export const CardPedido = ({ orders, onCancel, onStatusChange, statusButtonLabel, cancelButtonLabel, deleteButtonLabel, onDelete }) => {
   return (
     <main className={styles.pedidos}>
       <h1>Pedidos</h1>
@@ -25,7 +25,10 @@ export const CardPedido = ({ orders, onDelete, onStatusChange, statusButtonLabel
               ))}
             </ul>
             <div className={styles.wrapBtn}>
-              <button onClick={() => onDelete(order.id)}>Cancelar</button>
+              <button onClick={() => onCancel(order.id)}>{cancelButtonLabel}</button>
+              {deleteButtonLabel && (
+                <button onClick={() => onDelete(order.id)}>{deleteButtonLabel}</button>
+              )}
               {onStatusChange && (
                 <button onClick={() => onStatusChange(order.id)}>{statusButtonLabel}</button>
               )}

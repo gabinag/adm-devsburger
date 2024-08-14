@@ -20,7 +20,6 @@ export const Menu = () =>  {
           <ul>
               <li><NavLink to='/pedidos'>Pedidos</NavLink></li>
               <li><NavLink to='/produtos'>Produtos</NavLink></li>
-              <li><NavLink to='/usuarios'>Usuários</NavLink></li>
           </ul>
           <button onClick={handleSignOut}>Sair</button>
       </nav>

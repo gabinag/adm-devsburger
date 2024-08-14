@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [
     signInWithEmailAndPassword,
     user,
@@ -17,21 +18,43 @@ export const Login = () => {
 
   function handleSignIn(e) {
     e.preventDefault();
+    
+    if (!email || !password) {
+      setErrorMessage('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    setErrorMessage('');
+    
     signInWithEmailAndPassword(email, password);
   }
 
   useEffect(() => {
     if (error) {
-      alert(`Erro: ${error.message}`);
+      switch (error.message) {
+        case 'Firebase: Error (auth/invalid-email).':
+          setErrorMessage('E-mail inválido.');
+          break;
+        case 'Firebase: Error (auth/wrong-password).':
+          setErrorMessage('Senha incorreta.');
+          break;
+        case 'Firebase: Error (auth/user-not-found).':
+          setErrorMessage('E-mail não encontrado.');
+          break;
+        default:
+          setErrorMessage('Erro: ' + error.message);
+      }
     }
   }, [error]);
 
-  if(loading) {
-    return <p>Carregando...</p>
-  }
+  useEffect(() => {
+    if (user) {
+      navigate('/pedidos');
+    }
+  }, [user, navigate]);
 
-  if(user) {
-    navigate('/pedidos');
+  if (loading) {
+    return <p>Carregando...</p>;
   }
 
   return (
@@ -41,14 +64,25 @@ export const Login = () => {
             <p>Faça o login para acessar os pedidos e produtos do Devs Burger</p>
         </div>
         <div className={styles.wrapLogin}>
-            <form>
+            <form className={styles.formLogin}>
                 <label>E-mail</label>
-                <input type="email" onChange={e=>setEmail(e.target.value)} required/>
+                <input 
+                  type="email" 
+                  onChange={e => setEmail(e.target.value)} 
+                  value={email}
+                  required 
+                />
                 <label>Senha</label>
-                <input type="password" onChange={e=>setPassword(e.target.value)} required/>
+                <input 
+                  type="password" 
+                  onChange={e => setPassword(e.target.value)} 
+                  value={password}
+                  required 
+                />
                 <button onClick={handleSignIn}>Entrar</button>
+                {errorMessage && <p className={styles.error}>{errorMessage}</p>}
             </form>
         </div>
     </div>
-  )
-}
+  );
+};
