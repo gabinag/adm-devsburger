@@ -43,7 +43,7 @@ export const PedidosCancelados = () => {
       <CardPedido
         orders={canceledOrders}
         onDelete={handleDeleteOrder}
-        cancelButtonLabel="Deletar"
+        deleteButtonLabel="Deletar"
       />
     </>
   );
