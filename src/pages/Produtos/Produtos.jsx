@@ -88,6 +88,18 @@ export const Produtos = () => {
     categoryRef.current.value = product.category;
   }
 
+  const formatPrice = (price) => {
+    let formattedPrice = price.toFixed(2);
+  
+    if (formattedPrice.endsWith('00')) {
+      formattedPrice = formattedPrice.slice(0, -3); 
+    } else if (formattedPrice.endsWith('0')) {
+      formattedPrice = formattedPrice.slice(0, -1); 
+    }
+  
+    return `R$${formattedPrice.replace('.', ',')}`;
+  };
+
   return (
     <div className={styles.produtos}>
       <Menu></Menu>
@@ -107,7 +119,7 @@ export const Produtos = () => {
           />
           <label>Preço:</label>
           <input
-            type="number"
+            type="text"
             placeholder="Digite o preço do produto"
             ref={priceRef}
           />
@@ -144,7 +156,7 @@ export const Produtos = () => {
                 <img src={product.image} alt=""/>
                 <p>{product.name}</p>
                 <p>{product.description}</p>
-                <p>Preço: R${product.price}</p>
+                <p>Preço: {formatPrice(product.price)}</p>
                 <div className={styles.wrapBtn}>
                   <button onClick={() => handleEdit(product)}>Editar</button>
                   <button onClick={() => handleDelete(product.id)}>Excluir</button>

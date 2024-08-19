@@ -30,8 +30,8 @@ export const PedidosCancelados = () => {
         params: { id }
       });
 
-      const remainingOrders = canceledOrders.filter((order) => order.id !== id);
-      setCanceledOrders(remainingOrders);
+      const updatedOrders = canceledOrders.filter((order) => order.id !== id);
+      setCanceledOrders(updatedOrders);
     } catch(error) {
       console.log(error);
     }

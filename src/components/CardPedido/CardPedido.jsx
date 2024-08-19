@@ -1,7 +1,7 @@
 import { NavPedidos } from '../NavPedidos/NavPedidos';
 import styles from './CardPedido.module.css';
 
-export const CardPedido = ({ orders, onCancel, onStatusChange, statusButtonLabel, cancelButtonLabel, deleteButtonLabel, onDelete }) => {
+export const CardPedido = ({ orders, onCancel, onDelete, onStatusChange, statusButtonLabel, cancelButtonLabel, deleteButtonLabel }) => {
   return (
     <main className={styles.pedidos}>
       <h1>Pedidos</h1>
@@ -16,6 +16,9 @@ export const CardPedido = ({ orders, onCancel, onStatusChange, statusButtonLabel
               <p>Telefone: {order.phone}</p>
               <p>Entrega: {order.address}</p>
               <p>Pagamento: {order.paymentMethod}</p>
+              {order.observation && (
+                  <p>Observação: {order.observation}</p>
+                )}
             </div>
             <ul>
               {order.orderItems.map((item, index) => (
@@ -25,7 +28,9 @@ export const CardPedido = ({ orders, onCancel, onStatusChange, statusButtonLabel
               ))}
             </ul>
             <div className={styles.wrapBtn}>
-              <button onClick={() => onCancel(order.id)}>{cancelButtonLabel}</button>
+              {cancelButtonLabel && (
+                <button onClick={() => onCancel(order.id)}>{cancelButtonLabel}</button>
+              )}
               {deleteButtonLabel && (
                 <button onClick={() => onDelete(order.id)}>{deleteButtonLabel}</button>
               )}
