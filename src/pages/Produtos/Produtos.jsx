@@ -130,7 +130,7 @@ export const Produtos = () => {
             ref={imageRef}
           />
           <label>Categoria:</label>
-          <select ref={categoryRef} defaultValue="" required>
+          <select ref={categoryRef} defaultValue="" required className={styles.category}>
             <option value="" disabled hidden>Selecione uma categoria</option>
             {validCategories.map(category => (
               <option key={category.value} value={category.value}>{category.label}</option>
@@ -148,7 +148,7 @@ export const Produtos = () => {
           </select>
         </div>
         {filteredProducts.length === 0 ? (
-          <p className={styles.loading}>Carregando...</p>
+          <p className="loading">Carregando...</p>
         ) : (
           <section>
             {filteredProducts.map((product) => (
@@ -158,8 +158,8 @@ export const Produtos = () => {
                 <p>{product.description}</p>
                 <p>Preço: {formatPrice(product.price)}</p>
                 <div className={styles.wrapBtn}>
-                  <button onClick={() => handleEdit(product)}>Editar</button>
-                  <button onClick={() => handleDelete(product.id)}>Excluir</button>
+                  <button onClick={() => handleEdit(product)} className={styles.editButton}>Editar</button>
+                  <button onClick={() => handleDelete(product.id)} className={styles.deleteButton}>Excluir</button>
                 </div>
               </div>
             ))}

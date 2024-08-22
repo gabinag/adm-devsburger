@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Antonio:wght@100..700&display=swap');
+
+:root {
+  --laranja: #E48900;
+  --marrom: #794800;
+  --marrom-claro: #A76400;
+}
+
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Verdana', sans-serif;
+    font-family: "Antonio", sans-serif;
     list-style: none;
     text-decoration: none;
   }
@@ -10,7 +18,16 @@ html {
   font-size: 62.5%;
 }
 
-p, label {
-  font-size: 1.4rem;
+h1, h2 {
+  font-family: "Anton", sans-serif;
+  font-weight: normal;
 }
 
+.bgGeral {
+  background-color: var(--marrom);
+}
+
+.loading {
+  font-size: 1.6rem;
+  color: #fff;
+}

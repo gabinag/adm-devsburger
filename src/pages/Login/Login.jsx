@@ -3,6 +3,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../../services/firebaseConfig';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import imgLogo from '../../assets/logo.png'
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -60,8 +61,9 @@ export const Login = () => {
   return (
     <div className={styles.login}>
         <div className={styles.container}>
-            <h1>Administração Devs Burger</h1>
-            <p>Faça o login para acessar os pedidos e produtos do Devs Burger</p>
+            <h1>Administração</h1>
+            <img src={imgLogo} alt="Logo da Devs Burger" />
+            <p>Faça o login para acessar os pedidos e produtos da Devs Burger.</p>
         </div>
         <div className={styles.wrapLogin}>
             <form className={styles.formLogin}>

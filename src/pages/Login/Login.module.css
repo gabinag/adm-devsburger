@@ -8,8 +8,26 @@
    margin: auto;
 }
 
+.container {
+    color: var(--marrom);
+}
+
+.container img {
+    max-width: 30rem;
+}
+
+.container h1 {
+    font-size: 2.5rem;
+}
+
+.container p {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    max-width: 30rem;
+}
+
 .wrapLogin {
-    background-color: lightgray;
+    background-color: var(--marrom);
     height: 100%;
     width: 100%;
     display: flex;
@@ -22,8 +40,31 @@
     width: 28rem;
 }
 
+.formLogin label {
+    color: #fff;
+    font-size: 1.6rem;
+}
+
+.formLogin input {
+    margin-bottom: 2rem;
+    border: none;
+    padding: .5rem;
+    font-size: 1.4rem;
+}
+
 .formLogin button {
     margin: 2rem 0;
+    color: #fff;
+    background-color: var(--marrom-claro);
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.formLogin button:hover {
+    background-color: var(--laranja);
 }
 
 .error {

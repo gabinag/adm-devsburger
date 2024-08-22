@@ -2,6 +2,7 @@ import styles from './Menu.module.css';
 import { NavLink } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../services/firebaseConfig';
+import imgLogo from '../../assets/logo.png'
 
 export const Menu = () =>  {
 
@@ -15,7 +16,8 @@ export const Menu = () =>  {
 
   return (
     <div className={styles.menu}>
-      <p>Adm Devs Burger</p>
+      <h2>Admnistração</h2>
+      <img src={imgLogo} alt="Logo da Devs Burger" />
       <nav className={styles.navMenu}>
           <ul>
               <li><NavLink to='/pedidos'>Pedidos</NavLink></li>
