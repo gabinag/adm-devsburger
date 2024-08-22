@@ -153,7 +153,7 @@ export const Produtos = () => {
           <section>
             {filteredProducts.map((product) => (
               <div className={styles.card} key={product.id}>
-                <img src={product.image} alt=""/>
+                <img src={product.image} alt="Imagem do produto"/>
                 <p>{product.name}</p>
                 <p>{product.description}</p>
                 <p>Preço: {formatPrice(product.price)}</p>
