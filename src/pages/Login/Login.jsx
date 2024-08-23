@@ -66,21 +66,23 @@ export const Login = () => {
             <p>Faça o login para acessar os pedidos e produtos da Devs Burger.</p>
         </div>
         <div className={styles.wrapLogin}>
-            <form className={styles.formLogin}>
-                <label>E-mail</label>
-                <input 
-                  type="email" 
-                  onChange={e => setEmail(e.target.value)} 
-                  value={email}
-                  required 
-                />
-                <label>Senha</label>
-                <input 
-                  type="password" 
-                  onChange={e => setPassword(e.target.value)} 
-                  value={password}
-                  required 
-                />
+            <form>
+                <label>E-mail
+                  <input 
+                    type="email" 
+                    onChange={e => setEmail(e.target.value)} 
+                    value={email}
+                    required 
+                  />
+                </label>
+                <label>Senha
+                  <input 
+                    type="password" 
+                    onChange={e => setPassword(e.target.value)} 
+                    value={password}
+                    required 
+                  />
+                </label>
                 <button onClick={handleSignIn}>Entrar</button>
                 {errorMessage && <p className={styles.error}>{errorMessage}</p>}
             </form>
