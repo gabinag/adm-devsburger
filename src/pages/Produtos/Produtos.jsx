@@ -8,6 +8,8 @@ export const Produtos = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [editingProduct, setEditingProduct] = useState(null);
+  const [descricao, setDescricao] = useState('');
+  const maxLength = 100;
   const nameRef = useRef(null);
   const descriptionRef = useRef(null);
   const priceRef = useRef(null);
@@ -112,10 +114,16 @@ export const Produtos = () => {
             placeholder="Digite o nome do produto"
             ref={nameRef}
           />
-          <label>Descrição:</label>
+          <div className={styles.wrapDesc}>
+            <label>Descrição:</label>
+            <p>{descricao.length}/{maxLength}</p>
+          </div>
           <textarea
             placeholder="Digite a descrição do produto"
+            value={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
             ref={descriptionRef}
+            maxLength={maxLength}
           />
           <label>Preço:</label>
           <input
@@ -155,7 +163,7 @@ export const Produtos = () => {
               <div className={styles.card} key={product.id}>
                 <img src={product.image} alt="Imagem do produto"/>
                 <p>{product.name}</p>
-                <p>{product.description}</p>
+                <p className={styles.desc}>{product.description}</p>
                 <p>Preço: {formatPrice(product.price)}</p>
                 <div className={styles.wrapBtn}>
                   <button onClick={() => handleEdit(product)} className={styles.editButton}>Editar</button>

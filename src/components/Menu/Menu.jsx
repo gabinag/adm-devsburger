@@ -1,5 +1,5 @@
 import styles from './Menu.module.css';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../services/firebaseConfig';
 import imgLogo from '../../assets/logo.png'
@@ -20,8 +20,8 @@ export const Menu = () =>  {
       <img src={imgLogo} alt="Logo da Devs Burger" />
       <nav className={styles.navMenu}>
           <ul>
-              <li><NavLink to='/pedidos'>Pedidos</NavLink></li>
-              <li><NavLink to='/produtos'>Produtos</NavLink></li>
+              <li><Link to='/pedidos'>Pedidos</Link></li>
+              <li><Link to='/produtos'>Produtos</Link></li>
           </ul>
           <button onClick={handleSignOut}>Sair</button>
       </nav>

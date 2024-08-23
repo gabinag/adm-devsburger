@@ -31,3 +31,7 @@ h1, h2 {
   font-size: 1.6rem;
   color: #fff;
 }
+
+button {
+  cursor: pointer;
+}
