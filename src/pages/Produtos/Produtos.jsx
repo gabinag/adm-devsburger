@@ -57,6 +57,7 @@ export const Produtos = () => {
       await api.put(`/product?id=${editingProduct.id}`, productData);
       setProducts(products.map(product => product.id === editingProduct.id ? { ...product, ...productData } : product));
       setEditingProduct(null);
+      setDescricao('');
     } else {
       const response = await api.post("/product", productData);
       setProducts(allProducts => [...allProducts, response.data]);
@@ -85,6 +86,7 @@ export const Produtos = () => {
     setEditingProduct(product);
     nameRef.current.value = product.name;
     descriptionRef.current.value = product.description;
+    setDescricao(product.description); 
     priceRef.current.value = product.price;
     imageRef.current.value = product.image;
     categoryRef.current.value = product.category;
