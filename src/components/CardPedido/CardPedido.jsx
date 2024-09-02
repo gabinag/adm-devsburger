@@ -20,6 +20,7 @@ export const CardPedido = ({ orders, onCancel, onDelete, onStatusChange, statusB
                 {order.observation && (
                     <p>Observação: {order.observation}</p>
                   )}
+                <p>ID: {order.id}</p>
               </div>
               <ul>
                 {order.orderItems.map((item, index) => (
