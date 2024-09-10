@@ -16,11 +16,11 @@ export const CardPedido = ({ orders, onCancel, onDelete, onStatusChange, statusB
                 <p>Nome: {order.name}</p>
                 <p>Telefone: {order.phone}</p>
                 <p>Entrega: {order.address}</p>
+                <p>Valor total: R${order.totalPrice}</p>
                 <p>Pagamento: {order.paymentMethod}</p>
                 {order.observation && (
                     <p>Observação: {order.observation}</p>
                   )}
-                <p>ID: {order.id}</p>
               </div>
               <ul>
                 {order.orderItems.map((item, index) => (
