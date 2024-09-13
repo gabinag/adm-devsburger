@@ -58,9 +58,12 @@ export const Produtos = () => {
       setProducts(products.map(product => product.id === editingProduct.id ? { ...product, ...productData } : product));
       setEditingProduct(null);
       setDescricao('');
+      alert('Produto editado com sucesso.');
     } else {
       const response = await api.post("/product", productData);
       setProducts(allProducts => [...allProducts, response.data]);
+      setDescricao('');
+      alert('Produto cadastrado com sucesso.')
     }
 
     nameRef.current.value = "";
@@ -77,6 +80,7 @@ export const Produtos = () => {
       });
       const allProducts = products.filter((product) => product.id !== id);
       setProducts(allProducts);
+      alert("Produto deletado com sucesso.");
     } catch(error) {
       console.log(error);
     }
