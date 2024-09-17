@@ -5,7 +5,6 @@ import { CardPedido } from '../../components/CardPedido/CardPedido';
 
 export const PedidosFazendo = () => {
   const [doingOrders, setDoingOrders] = useState([]);
-  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const fetchDoingOrders = async () => {
@@ -13,7 +12,10 @@ export const PedidosFazendo = () => {
         const response = await api.get("/orders", {
           params: { status: 'doing' }
         });
-        setDoingOrders(response.data);
+        const fetchedOrders = response.data;
+
+        const sortedOrders = fetchedOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setDoingOrders(sortedOrders);
       } catch (error) {
         console.error('Erro ao buscar pedidos em andamento:', error);
       }
@@ -27,9 +29,9 @@ export const PedidosFazendo = () => {
   async function handleCancelOrder(id) {
     try {
       await api.post("/order/status", { orderId: id, status: "canceled" });
-  
-      const remainingOrders = orders.filter((order) => order.id !== id);
-      setOrders(remainingOrders);
+
+      const remainingOrders = doingOrders.filter((order) => order.id !== id);
+      setDoingOrders(remainingOrders);
     } catch (error) {
       console.error('Erro ao cancelar pedido:', error);
     }

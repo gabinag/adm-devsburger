@@ -3,12 +3,13 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../../services/firebaseConfig';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import imgLogo from '../../assets/logo.png'
+import imgLogo from '../../assets/logo.png';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false); 
   const [
     signInWithEmailAndPassword,
     user,
@@ -26,6 +27,7 @@ export const Login = () => {
     }
 
     setErrorMessage('');
+    setIsLoading(true); 
     
     signInWithEmailAndPassword(email, password);
   }
@@ -45,6 +47,7 @@ export const Login = () => {
         default:
           setErrorMessage('Erro: ' + error.message);
       }
+      setIsLoading(false); 
     }
   }, [error]);
 
@@ -54,39 +57,42 @@ export const Login = () => {
     }
   }, [user, navigate]);
 
-  if (loading) {
-    return <p>Carregando...</p>;
-  }
+  useEffect(() => {
+    if (!loading) {
+      setIsLoading(false); 
+    }
+  }, [loading]);
 
   return (
     <div className={styles.login}>
-        <div className={styles.container}>
-            <h1>Administração</h1>
-            <img src={imgLogo} alt="Logo da Devs Burger" />
-            <p>Faça o login para acessar os pedidos e produtos da Devs Burger.</p>
-        </div>
-        <div className={styles.wrapLogin}>
-            <form>
-                <label>E-mail
-                  <input 
-                    type="email" 
-                    onChange={e => setEmail(e.target.value)} 
-                    value={email}
-                    required 
-                  />
-                </label>
-                <label>Senha
-                  <input 
-                    type="password" 
-                    onChange={e => setPassword(e.target.value)} 
-                    value={password}
-                    required 
-                  />
-                </label>
-                <button onClick={handleSignIn}>Entrar</button>
-                {errorMessage && <p className={styles.error}>{errorMessage}</p>}
-            </form>
-        </div>
+      <div className={styles.container}>
+        <h1>Administração</h1>
+        <img src={imgLogo} alt="Logo da Devs Burger" />
+        <p>Faça o login para acessar os pedidos e produtos da Devs Burger.</p>
+      </div>
+      <div className={styles.wrapLogin}>
+        <form>
+          <label>E-mail
+            <input 
+              type="email" 
+              onChange={e => setEmail(e.target.value)} 
+              value={email}
+              required 
+            />
+          </label>
+          <label>Senha
+            <input 
+              type="password" 
+              onChange={e => setPassword(e.target.value)} 
+              value={password}
+              required 
+            />
+          </label>
+          <button onClick={handleSignIn} disabled={isLoading}>Entrar</button>
+          {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+          {isLoading && <p className={styles.loading}>Verificando usuário...</p>} 
+        </form>
+      </div>
     </div>
   );
 };
