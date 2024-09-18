@@ -10,7 +10,7 @@
   .wrapPedidos {
     margin-bottom: 1.5rem;
     padding: 1rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     display: flex;
     justify-content: space-between;
     background-color: var(--marrom-claro);
@@ -29,6 +29,7 @@
       padding: .5rem 1rem;
       border-radius: .5rem;
       color: #fff;
+      font-size: 1.6rem;
     }
     .cancelButton, .deleteButton {
       background-color: var(--marrom);

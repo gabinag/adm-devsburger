@@ -90,7 +90,7 @@ export const Login = () => {
           </label>
           <button onClick={handleSignIn} disabled={isLoading}>Entrar</button>
           {errorMessage && <p className={styles.error}>{errorMessage}</p>}
-          {isLoading && <p className={styles.loading}>Verificando usuário...</p>} 
+          {isLoading && <p className={styles.loading}>Validando usuário...</p>} 
         </form>
       </div>
     </div>

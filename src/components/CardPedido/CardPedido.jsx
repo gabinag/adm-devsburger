@@ -13,7 +13,7 @@ export const CardPedido = ({ orders, onCancel, onDelete, onStatusChange, statusB
           orders.map((order) => (
             <div key={order.id} className={styles.wrapPedidos}>
               <div className={styles.wrapDados}>
-                <p>Nome: {order.name}</p>
+                <p>Nome: <strong>{order.name}</strong></p>
                 <p>Telefone: {order.phone}</p>
                 <p>Entrega: {order.address}</p>
                 <p>Valor total: R${order.totalPrice}</p>
@@ -25,7 +25,7 @@ export const CardPedido = ({ orders, onCancel, onDelete, onStatusChange, statusB
               <ul>
                 {order.orderItems.map((item, index) => (
                   <li key={index}>
-                    {item.quantity}x {item.product.name}
+                    <strong>{item.quantity}x {item.product.name}</strong>
                   </li>
                 ))}
               </ul>
