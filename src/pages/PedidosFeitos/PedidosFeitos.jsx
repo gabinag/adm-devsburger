@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { Menu } from '../../components/Menu/Menu';
 import { CardPedido } from '../../components/CardPedido/CardPedido';
+import Modal from '../../components/Modal/Modal'; 
 
 export const PedidosFeitos = () => {
   const [completedOrders, setCompletedOrders] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [orderToDelete, setOrderToDelete] = useState(null);
 
   useEffect(() => {
     const fetchCompletedOrders = async () => {
@@ -24,7 +27,7 @@ export const PedidosFeitos = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  async function handleDeleteOrder(id) {
+  const handleDeleteOrder = async (id) => {
     try {
       await api.delete("/order", {
         params: { id }
@@ -32,12 +35,13 @@ export const PedidosFeitos = () => {
 
       const updatedOrders = completedOrders.filter((order) => order.id !== id);
       setCompletedOrders(updatedOrders);
+      setIsModalOpen(false);
     } catch (error) {
       console.error('Erro ao excluir pedido:', error);
     }
-  }
+  };
 
-  async function handleCancelOrder(id) {
+  const handleCancelOrder = async (id) => {
     try {
       await api.post("/order/status", { orderId: id, status: "canceled" });
   
@@ -46,7 +50,17 @@ export const PedidosFeitos = () => {
     } catch (error) {
       console.error('Erro ao cancelar pedido:', error);
     }
-  }
+  };
+
+  const openModal = (orderId) => {
+    setOrderToDelete(orderId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setOrderToDelete(null);
+  };
 
   return (
     <>
@@ -54,9 +68,15 @@ export const PedidosFeitos = () => {
       <CardPedido
         orders={completedOrders}
         onCancel={handleCancelOrder}
-        onDelete={handleDeleteOrder}
+        onDelete={openModal} 
         cancelButtonLabel="Cancelar"
         deleteButtonLabel="Deletar"
+      />
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onConfirm={() => orderToDelete && handleDeleteOrder(orderToDelete)}
+        message="Tem certeza que deseja deletar este pedido?"
       />
     </>
   );

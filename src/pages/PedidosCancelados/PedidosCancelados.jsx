@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { Menu } from '../../components/Menu/Menu';
 import { CardPedido } from '../../components/CardPedido/CardPedido';
+import Modal from '../../components/Modal/Modal'; 
 import '../../App.css';
 
 export const PedidosCancelados = () => {
   const [canceledOrders, setCanceledOrders] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [orderToDelete, setOrderToDelete] = useState(null);
 
   useEffect(() => {
     const fetchCanceledOrders = async () => {
@@ -24,7 +27,7 @@ export const PedidosCancelados = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  async function handleDeleteOrder(id) {
+  const handleDeleteOrder = async (id) => {
     try {
       await api.delete("/order", {
         params: { id }
@@ -32,18 +35,35 @@ export const PedidosCancelados = () => {
 
       const updatedOrders = canceledOrders.filter((order) => order.id !== id);
       setCanceledOrders(updatedOrders);
-    } catch(error) {
+      setIsModalOpen(false);
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
+
+  const openModal = (orderId) => {
+    setOrderToDelete(orderId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setOrderToDelete(null);
+  };
 
   return (
     <>
       <Menu />
       <CardPedido
         orders={canceledOrders}
-        onDelete={handleDeleteOrder}
+        onDelete={openModal} 
         deleteButtonLabel="Deletar"
+      />
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onConfirm={() => orderToDelete && handleDeleteOrder(orderToDelete)}
+        message="Tem certeza que deseja deletar este pedido?"
       />
     </>
   );

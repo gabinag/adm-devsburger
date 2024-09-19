@@ -1,0 +1,38 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContent {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 10px;
+    text-align: center;
+    h3 {
+        font-size: 1.6rem;
+        color: var(--marrom);
+    }
+  }
+  
+  .modalButtons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .modalButtons button {
+    background-color: var(--laranja);
+    border: none;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    color: #fff;
+    font-size: 1.6rem;
+  }
