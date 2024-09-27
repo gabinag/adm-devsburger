@@ -114,14 +114,14 @@ export const Produtos = () => {
       <main className={styles.wrapProdutos}>
         <h1>Cadastro de Produtos</h1>
         <form onSubmit={handleSubmit}>
-          <label>Nome do produto:</label>
+          <label>Nome do produto: *</label>
           <input
             type="text"
             placeholder="Digite o nome do produto"
             ref={nameRef}
           />
           <div className={styles.wrapDesc}>
-            <label>Descrição:</label>
+            <label>Descrição: *</label>
             <p>{descricao.length}/{maxLength}</p>
           </div>
           <textarea
@@ -131,19 +131,19 @@ export const Produtos = () => {
             ref={descriptionRef}
             maxLength={maxLength}
           />
-          <label>Preço:</label>
+          <label>Preço: *</label>
           <input
             type="text"
             placeholder="Digite o preço do produto"
             ref={priceRef}
           />
-          <label>URL da imagem:</label>
+          <label>URL da imagem: *</label>
           <input
             type="url"
             placeholder="Digite a url da imagem"
             ref={imageRef}
           />
-          <label>Categoria:</label>
+          <label>Categoria: *</label>
           <select ref={categoryRef} defaultValue="" required className={styles.category}>
             <option value="" disabled hidden>Selecione uma categoria</option>
             {validCategories.map(category => (
@@ -153,7 +153,7 @@ export const Produtos = () => {
           <button type="submit">{editingProduct ? 'Atualizar' : 'Cadastrar'}</button>
         </form>
         <div className={styles.filter}>
-          <label>Filtrar por categoria:</label>
+          <label>Filtrar por categoria: </label>
           <select onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory}>
             <option value="">Todas as categorias</option>
             {validCategories.map(category => (
