@@ -1,27 +1,24 @@
 .login {
-    display: grid;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: 100vh;
+    padding: 4rem 1rem;
     .container, .wrapLogin {
         margin: auto;
      }
      .container {
         color: var(--marrom);
+        text-align: center;
         img {
-            max-width: 30rem;
+            max-width: 10rem;
         }
         h1 {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
         }
         p {
             font-size: 1.6rem;
-            margin-top: 1rem;
-            max-width: 30rem;
+            max-width: 25rem;
+            margin: 2rem auto;
         }
     }
     .wrapLogin {
-        background-color: var(--marrom);
-        height: 100%;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -34,17 +31,16 @@
             width: 100%;
             align-items: center;
             label {
-                color: #fff;
+                color: var(--marrom);
                 font-size: 1.6rem;
             }
             input {
                 margin: .5rem 0 1rem;
-                border: none;
                 padding: .5rem;
                 font-size: 1.6rem;
-                display: block;
                 border-radius: .5rem;
-                width: 25rem;
+                border: 1.5px var(--marrom-claro) solid;
+                width: min(25rem, 100%);
             }
             button {
                 margin: 2rem 0;
@@ -64,12 +60,12 @@
                 text-align: center;
                 font-size: 1.4rem;
                 position: absolute;
-                bottom: -2rem;
+                bottom: -4rem;
                 transform: translate(-50%, -50%);
                 left: 50%;
             }
             .loading {
-                color: #fff;
+                color: var(--marrom-claro);
                 font-size: 1.4rem;
             }
         }
@@ -78,5 +74,44 @@
 }
 
 
-
+@media screen and (min-width: 820px) {
+    .login {
+        padding: 0rem;
+        display: grid;
+        grid-template-columns: 60% 40%;
+        grid-template-rows: 100vh;
+         .container {
+            text-align: start;
+            img {
+                max-width: 30rem;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            p {
+                font-size: 1.6rem;
+                margin-top: 1rem;
+                max-width: 30rem;
+            }
+        }
+        .wrapLogin {
+            background-color: var(--marrom);
+            height: 100%;
+            form {
+                label {
+                    color: #fff;
+                }
+                input {
+                    border: none;
+                    display: block;
+                    width: 25rem;
+                }
+                .loading {
+                    color: #fff;
+                }
+            }
+        }
+        
+    }
+}
 
