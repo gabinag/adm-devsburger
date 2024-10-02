@@ -2,6 +2,14 @@ import { NavPedidos } from '../NavPedidos/NavPedidos';
 import styles from './CardPedido.module.css';
 
 export const CardPedido = ({ orders, onCancel, onDelete, onStatusChange, statusButtonLabel, cancelButtonLabel, deleteButtonLabel }) => {
+
+  const formatarData = (dataISO) => {
+    const data = new Date(dataISO);
+    return data.toLocaleString('pt-BR', {
+      timeZone: 'America/Sao_Paulo', 
+    });
+  };
+
   return (
     <div className="bgGeral">
       <div className={styles.pedidos}>
@@ -21,6 +29,7 @@ export const CardPedido = ({ orders, onCancel, onDelete, onStatusChange, statusB
                 {order.observation && (
                     <p>Observação: {order.observation}</p>
                   )}
+                <p>Data/hora: {formatarData(order.createdAt)}</p>
               </div>
               <ul>
                 {order.orderItems.map((item, index) => (
