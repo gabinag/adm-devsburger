@@ -1,6 +1,6 @@
 .produtos {
     display: flex;
-    padding-bottom: 4rem;
+    padding: 0rem 2rem 4rem;
     background-color: var(--marrom);
     min-height: 100vh;
     .wrapProdutos {
@@ -113,6 +113,14 @@
     }
 }
 
-
+@media screen and (max-width: 740px){
+    .produtos {
+        .wrapProdutos {
+            section {
+                justify-content: center;
+            }
+        }
+    }
+}
 
 

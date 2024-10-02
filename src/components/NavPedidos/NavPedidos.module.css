@@ -3,7 +3,14 @@
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
+    overflow-x: auto;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
 }
+
+.scroll-container::-webkit-scrollbar {
+    display: none; 
+  }
 
 .navpedidos .link {
     background-color: var(--marrom-claro);
@@ -11,6 +18,7 @@
     font-weight: bold;
     padding: .5rem 1rem;
     border-radius: .5rem;
+    text-wrap: nowrap;
 }
 
 .link.active {

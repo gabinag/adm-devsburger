@@ -34,8 +34,10 @@ export const Menu = () => {
 
   return (
     <div className={styles.menu}>
-      <h2>Administração</h2>
-      <img src={imgLogo} alt="Logo da Devs Burger" />
+      <div>
+        <h2>Administração</h2>
+        <img src={imgLogo} alt="Logo da Devs Burger" />
+      </div>
       <nav className={styles.navMenu}>
         <ul>
           <li><Link to='/pedidos'>Pedidos</Link></li>

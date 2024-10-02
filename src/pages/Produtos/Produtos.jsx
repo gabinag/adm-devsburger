@@ -109,77 +109,79 @@ export const Produtos = () => {
   };
 
   return (
-    <div className={styles.produtos}>
-      <Menu></Menu>
-      <main className={styles.wrapProdutos}>
-        <h1>Cadastro de Produtos</h1>
-        <form onSubmit={handleSubmit}>
-          <label>Nome do produto: *</label>
-          <input
-            type="text"
-            placeholder="Digite o nome do produto"
-            ref={nameRef}
-          />
-          <div className={styles.wrapDesc}>
-            <label>Descrição: *</label>
-            <p>{descricao.length}/{maxLength}</p>
+    <>
+      <Menu />
+      <div className={styles.produtos}>
+        <main className={styles.wrapProdutos}>
+          <h1>Cadastro de Produtos</h1>
+          <form onSubmit={handleSubmit}>
+            <label>Nome do produto: *</label>
+            <input
+              type="text"
+              placeholder="Digite o nome do produto"
+              ref={nameRef}
+            />
+            <div className={styles.wrapDesc}>
+              <label>Descrição: *</label>
+              <p>{descricao.length}/{maxLength}</p>
+            </div>
+            <textarea
+              placeholder="Digite a descrição do produto"
+              value={descricao}
+              onChange={(e) => setDescricao(e.target.value)}
+              ref={descriptionRef}
+              maxLength={maxLength}
+            />
+            <label>Preço: *</label>
+            <input
+              type="text"
+              placeholder="Digite o preço do produto"
+              ref={priceRef}
+            />
+            <label>URL da imagem: *</label>
+            <input
+              type="url"
+              placeholder="Digite a url da imagem"
+              ref={imageRef}
+            />
+            <label>Categoria: *</label>
+            <select ref={categoryRef} defaultValue="" required className={styles.category}>
+              <option value="" disabled hidden>Selecione uma categoria</option>
+              {validCategories.map(category => (
+                <option key={category.value} value={category.value}>{category.label}</option>
+              ))}
+            </select>
+            <button type="submit">{editingProduct ? 'Atualizar' : 'Cadastrar'}</button>
+          </form>
+          <div className={styles.filter}>
+            <label>Filtrar por categoria: </label>
+            <select onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory}>
+              <option value="">Todas as categorias</option>
+              {validCategories.map(category => (
+                <option key={category.value} value={category.value}>{category.label}</option>
+              ))}
+            </select>
           </div>
-          <textarea
-            placeholder="Digite a descrição do produto"
-            value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
-            ref={descriptionRef}
-            maxLength={maxLength}
-          />
-          <label>Preço: *</label>
-          <input
-            type="text"
-            placeholder="Digite o preço do produto"
-            ref={priceRef}
-          />
-          <label>URL da imagem: *</label>
-          <input
-            type="url"
-            placeholder="Digite a url da imagem"
-            ref={imageRef}
-          />
-          <label>Categoria: *</label>
-          <select ref={categoryRef} defaultValue="" required className={styles.category}>
-            <option value="" disabled hidden>Selecione uma categoria</option>
-            {validCategories.map(category => (
-              <option key={category.value} value={category.value}>{category.label}</option>
-            ))}
-          </select>
-          <button type="submit">{editingProduct ? 'Atualizar' : 'Cadastrar'}</button>
-        </form>
-        <div className={styles.filter}>
-          <label>Filtrar por categoria: </label>
-          <select onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory}>
-            <option value="">Todas as categorias</option>
-            {validCategories.map(category => (
-              <option key={category.value} value={category.value}>{category.label}</option>
-            ))}
-          </select>
-        </div>
-        {filteredProducts.length === 0 ? (
-          <p className="loading">Carregando...</p>
-        ) : (
-          <section>
-            {filteredProducts.map((product) => (
-              <div className={styles.card} key={product.id}>
-                <img src={product.image} alt="Imagem do produto"/>
-                <p>{product.name}</p>
-                <p className={styles.desc}>{product.description}</p>
-                <p>Preço: {formatPrice(product.price)}</p>
-                <div className={styles.wrapBtn}>
-                  <button onClick={() => handleEdit(product)} className={styles.editButton}>Editar</button>
-                  <button onClick={() => handleDelete(product.id)} className={styles.deleteButton}>Excluir</button>
+          {filteredProducts.length === 0 ? (
+            <p className="loading">Carregando...</p>
+          ) : (
+            <section>
+              {filteredProducts.map((product) => (
+                <div className={styles.card} key={product.id}>
+                  <img src={product.image} alt="Imagem do produto"/>
+                  <p>{product.name}</p>
+                  <p className={styles.desc}>{product.description}</p>
+                  <p>Preço: {formatPrice(product.price)}</p>
+                  <div className={styles.wrapBtn}>
+                    <button onClick={() => handleEdit(product)} className={styles.editButton}>Editar</button>
+                    <button onClick={() => handleDelete(product.id)} className={styles.deleteButton}>Excluir</button>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </section>
-        )}
-      </main>
-    </div>
+              ))}
+            </section>
+          )}
+        </main>
+      </div>
+    </>
   );
 }
