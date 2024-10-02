@@ -48,7 +48,7 @@
             color: var(--marrom);
         }
         .filter {
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -60,6 +60,7 @@
                 border-radius: .5rem;
                 padding: .3rem .5rem;
                 color: var(--marrom);
+                font-size: 1.5rem;
             }
         }
         section {
@@ -116,8 +117,20 @@
 @media screen and (max-width: 740px){
     .produtos {
         .wrapProdutos {
+            form {
+                input, textarea, select, label {
+                    font-size: 1.6rem;
+                }
+            }
             section {
                 justify-content: center;
+                .card {
+                    .wrapBtn {
+                        button {
+                            font-size: 1.6rem;
+                        }
+                    }
+                }
             }
         }
     }
