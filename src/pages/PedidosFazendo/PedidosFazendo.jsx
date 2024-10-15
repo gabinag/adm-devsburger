@@ -57,6 +57,7 @@ export const PedidosFazendo = () => {
         onStatusChange={markOrderAsReady}
         statusButtonLabel="Feito"
         cancelButtonLabel="Cancelar"
+        showStatus={false}
       />
     </>
   );

@@ -64,6 +64,7 @@ export const PedidosCancelados = () => {
         onClose={closeModal}
         onConfirm={() => orderToDelete && handleDeleteOrder(orderToDelete)}
         message="Tem certeza que deseja deletar este pedido?"
+        showStatus={false}
       />
     </>
   );

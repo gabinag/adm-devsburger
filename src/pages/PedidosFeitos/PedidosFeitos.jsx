@@ -71,6 +71,7 @@ export const PedidosFeitos = () => {
         onDelete={openModal} 
         cancelButtonLabel="Cancelar"
         deleteButtonLabel="Deletar"
+        showStatus={false}
       />
       <Modal
         isOpen={isModalOpen}

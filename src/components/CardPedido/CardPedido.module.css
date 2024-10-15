@@ -1,7 +1,7 @@
 .pedidos {
   margin: auto;
   padding: 2rem;
-  max-width: 70rem;
+  max-width: 75rem;
   min-height: 100vh;
   h1 {
     margin-bottom: 2rem;
@@ -42,18 +42,25 @@
       background-color: var(--laranja);
     }
   }
+  .status {
+    margin-right: .5rem;
+    font-weight: bold;
+  }
 }
 
 @media screen and (min-width: 640px) {
   .pedidos {
     .wrapPedidos {
       .wrapDados {
-        max-width: 30rem;
+        max-width: 35rem;
       }
     }
     .wrapBtn {
       display: flex;
       flex-direction: row;
+    }
+    .status {
+      margin-right: 1rem;
     }
   }
 }

@@ -13,9 +13,7 @@ export const Pedidos = () => {
         const response = await api.get('/orders');
         const fetchedOrders = response.data;
 
-        const pendingOrders = fetchedOrders.filter(order => order.status === 'pending');
-
-        const sortedOrders = pendingOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        const sortedOrders = fetchedOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setOrders(sortedOrders);
       } catch (error) {
         console.error('Erro ao buscar pedidos:', error);
@@ -27,37 +25,12 @@ export const Pedidos = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  async function handleCancelOrder(id) {
-    try {
-      await api.post("/order/status", { orderId: id, status: "canceled" });
-  
-      const remainingOrders = orders.filter((order) => order.id !== id);
-      setOrders(remainingOrders);
-    } catch (error) {
-      console.error('Erro ao cancelar pedido:', error);
-    }
-  }
-
-  async function markOrderAsDoing(orderId) {
-    try {
-      await api.post("/order/status", { orderId, status: "doing" });
-
-      const updatedOrders = orders.filter((order) => order.id !== orderId);
-      setOrders(updatedOrders);
-    } catch (error) {
-      console.error('Erro ao marcar pedido como em andamento:', error);
-    }
-  }
-
   return (
     <>
       <Menu />
       <CardPedido
         orders={orders}
-        onCancel={handleCancelOrder}
-        onStatusChange={markOrderAsDoing}
-        cancelButtonLabel="Cancelar"
-        statusButtonLabel="Aprovar"
+        showStatus={true}
       />
     </>
   );
