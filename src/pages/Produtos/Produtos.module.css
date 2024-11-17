@@ -22,8 +22,8 @@
                 border-radius: .5rem;
                 outline: none;
             }
-            label{
-                font-size: 1.4rem;
+            label, input, textarea, select{
+                font-size: 1.6rem;
             }
             .wrapDesc {
                 display: flex;
@@ -53,14 +53,14 @@
             align-items: center;
             gap: 1rem;
             label {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
             }
             select {
                 border: none;
                 border-radius: .5rem;
                 padding: .3rem .5rem;
                 color: var(--marrom);
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
         }
         section {
@@ -117,11 +117,6 @@
 @media screen and (max-width: 740px){
     .produtos {
         .wrapProdutos {
-            form {
-                input, textarea, select, label {
-                    font-size: 1.6rem;
-                }
-            }
             section {
                 justify-content: center;
                 .card {

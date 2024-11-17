@@ -69,7 +69,6 @@ export const PedidosFeitos = () => {
         orders={completedOrders}
         onCancel={handleCancelOrder}
         onDelete={openModal} 
-        cancelButtonLabel="Cancelar"
         deleteButtonLabel="Deletar"
         showStatus={false}
       />
