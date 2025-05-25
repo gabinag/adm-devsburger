@@ -1,8 +1,7 @@
-# React + Vite
+# DevsBurger - Admin 🧑‍🍳
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é o painel administrativo da plataforma **DevsBurger**, desenvolvido para facilitar o gerenciamento de pedidos, produtos e usuários em tempo real. Seu principal objetivo é fornecer aos administradores e à equipe da cozinha uma interface clara e eficiente para controlar o fluxo de pedidos e manter a operação do restaurante organizada.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+## 🖥️ Demonstração do projeto    
+https://adm-devsburger.vercel.app/
