@@ -1,4 +1,4 @@
-# DevsBurger - Admin 🧑‍🍳
+# Devs Burger - Admin 🧑‍🍳
 
 Este é o painel administrativo da plataforma **Devs Burger**, desenvolvido para facilitar o gerenciamento de pedidos, produtos e usuários em tempo real. Seu principal objetivo é fornecer aos administradores e à equipe da cozinha uma interface clara e eficiente para controlar o fluxo de pedidos e manter a operação do restaurante organizada.
 
