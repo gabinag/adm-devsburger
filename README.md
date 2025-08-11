@@ -11,6 +11,5 @@ Este é o painel administrativo da plataforma **Devs Burger**, desenvolvido para
 - Tela de cadastro de produtos
 <img width="1623" height="930" alt="image" src="https://github.com/user-attachments/assets/4b316fb6-36ed-4198-b42f-174bba53b8c0" />
 
-<br><br>
 ### Interface do cliente Devs Burger 🍔 ###       
 - https://devsburger.vercel.app/   
