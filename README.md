@@ -5,7 +5,8 @@ Este é o painel administrativo da plataforma **Devs Burger**, desenvolvido para
 ---
 ## 🖥️ Demonstração do projeto    
 - Tela de gerenciamento de pedidos
-<img width="1620" height="921" alt="image" src="https://github.com/user-attachments/assets/09b947a9-ef77-4950-829d-3fd43ea51c6f" />
+<img width="1623" height="930" alt="476742573-09b947a9-ef77-4950-829d-3fd43ea51c6f" src="https://github.com/user-attachments/assets/4de9e40e-72b3-40f2-835a-438e2171e831" />
+
 <br><br>
 
 - Tela de cadastro de produtos
